@@ -1,0 +1,50 @@
+<project name="BabaIsYou" default="all" basedir=".">
+
+    <property name="src" value="${basedir}/src"/>
+    <property name="docs" value="${basedir}/docs/doc"/>
+    <property name="classes" value="${basedir}/classes"/>
+    <property name="lib" value="${basedir}/lib"/>
+
+    <path id="projet.classpath">
+        <fileset dir="${lib}">
+            <include name="*.jar"/>
+        </fileset>
+    <pathelement location="${classes}"/>
+    </path>
+
+    <target name="initialisation">
+        <mkdir dir="${classes}"/>
+        <mkdir dir="${docs}"/>
+    </target>
+
+    <target name="all" depends="javadoc" description="Compilation">
+        <echo message="Generation complete."/>
+    </target>
+
+    <target name="javadoc" depends="compile" description="Création de la Javadoc">
+        <javadoc destdir="${docs}" author="true" version="true" use="true" 
+            package="true" >
+            <arg line="--enable-preview --release 15"/>
+            <fileset dir="${src}" includes="**/*.java"/>
+            <classpath refid="projet.classpath"/>
+        </javadoc>
+    </target>
+
+    <target name="compile" depends="initialisation" description="Compilation des classes">
+        <javac srcdir="${src}"
+            destdir="${classes}"
+            includeantruntime="false"
+            debug="on"
+            optimize="off"
+            deprecation="on">
+            <compilerarg line="--enable-preview --release 15"/>
+            <classpath refid="projet.classpath"/>
+        </javac>
+    </target>
+
+    <target name="clean" description="Nettoyage du projet">
+        <delete dir="${classes}"/>
+        <mkdir dir="${classes}"/>
+        <delete dir="${docs}"/>
+    </target>
+</project>
