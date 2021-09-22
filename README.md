@@ -14,3 +14,5 @@ docs: Contient toute la documentation du projet.
 baba.jar: Fichier qui, une fois éxécuté avec la commande de java approprié, lance le projet.
 
 build.xml: Fichier qui compile les classes automatiquement à son lancement à l'aide d'Ant pour pouvoir éxécuter le projet sans l'aide du fichier jar dans le cas où des nouvelles modifications sont nécéssaires.
+
+Les autres fichiers/données sont liés aux métadonnées crées par mon IDE.
